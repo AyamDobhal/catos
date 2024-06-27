@@ -6,7 +6,7 @@ use bit_field::BitField;
 
 pub const BITMAP_SIZE: usize = 8 * super::BLOCK_SIZE;
 
-// A BitmapBlock store the allocation status of BITMAP_SIZE blocks, or 8
+// A BitmapBlock to store the allocation status of BITMAP_SIZE blocks, or 8
 // data blocks per byte (1 per bit) of a bitmap block.
 pub struct BitmapBlock {}
 

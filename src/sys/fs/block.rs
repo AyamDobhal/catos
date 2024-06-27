@@ -68,12 +68,6 @@ impl Block {
     pub fn data_mut(&mut self) -> &mut [u8] {
         &mut self.buf[..]
     }
-
-    /*
-    pub fn len(&self) -> usize {
-        self.buf.len()
-    }
-    */
 }
 
 pub struct LinkedBlock {

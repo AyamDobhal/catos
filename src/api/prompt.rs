@@ -31,17 +31,20 @@ impl Prompt {
         let mut parser = Parser::new();
         while let Some(c) = io::stdin().read_char() {
             match c {
-                console::ETX_KEY => { // End of Text (^C)
+                console::ETX_KEY => {
+                    // End of Text (^C)
                     self.update_completion();
                     println!();
                     return Some(String::new());
                 }
-                console::EOT_KEY => { // End of Transmission (^D)
+                console::EOT_KEY => {
+                    // End of Transmission (^D)
                     self.update_completion();
                     println!();
                     return None;
                 }
-                '\n' => { // New Line
+                '\n' => {
+                    // New Line
                     self.update_completion();
                     self.update_history();
                     println!();
@@ -146,12 +149,8 @@ impl Prompt {
             return;
         }
         let (bs, i) = match self.history.pos {
-            Some(i) => {
-                (self.history.entries[i].chars().count(), i.saturating_sub(1))
-            }
-            None => {
-                (self.line.len(), n - 1)
-            }
+            Some(i) => (self.history.entries[i].chars().count(), i.saturating_sub(1)),
+            None => (self.line.len(), n - 1),
         };
         let line = &self.history.entries[i];
         let blank = ' '.to_string().repeat((self.offset + bs) - self.cursor);
@@ -268,7 +267,8 @@ impl Perform for Prompt {
             'Z' => self.handle_backtab_key(),
             '~' => {
                 for param in params.iter() {
-                    if param[0] == 3 { // Delete
+                    if param[0] == 3 {
+                        // Delete
                         self.handle_delete_key();
                     }
                 }

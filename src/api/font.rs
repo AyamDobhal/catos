@@ -28,8 +28,6 @@ pub fn from_bytes(buf: &[u8]) -> Result<Font, ()> {
     }
     let data = buf[4..n].to_vec();
 
-    // TODO: Unicode Table
-
     Ok(Font { height, size, data })
 }
 
@@ -37,9 +35,7 @@ pub fn from_bytes(buf: &[u8]) -> Result<Font, ()> {
 fn parse_psf_font() {
     assert!(from_bytes(include_bytes!("../../dsk/ini/boot.sh")).is_err());
 
-    let font = from_bytes(
-        include_bytes!("../../dsk/ini/fonts/zap-light-8x16.psf")
-    ).unwrap();
+    let font = from_bytes(include_bytes!("../../dsk/ini/fonts/zap-light-8x16.psf")).unwrap();
     assert_eq!(font.height, 16);
     assert_eq!(font.size, 256);
     assert_eq!(font.data.len(), 256 * 16);

@@ -81,12 +81,7 @@ impl Regex {
     }
 }
 
-fn is_match(
-    re: &[char],
-    text: &[char],
-    start: &mut usize,
-    end: &mut usize,
-) -> bool {
+fn is_match(re: &[char], text: &[char], start: &mut usize, end: &mut usize) -> bool {
     if re.is_empty() {
         return true;
     }
@@ -109,11 +104,7 @@ fn is_match(
     }
 }
 
-fn is_match_here(
-    re: &[char],
-    text: &[char],
-    end: &mut usize,
-) -> bool {
+fn is_match_here(re: &[char], text: &[char], end: &mut usize) -> bool {
     if re.is_empty() {
         return true;
     }
@@ -144,33 +135,15 @@ fn is_match_here(
     false
 }
 
-fn is_match_star(
-    lazy: bool,
-    mc: MetaChar,
-    re: &[char],
-    text: &[char],
-    end: &mut usize,
-) -> bool {
+fn is_match_star(lazy: bool, mc: MetaChar, re: &[char], text: &[char], end: &mut usize) -> bool {
     is_match_char(lazy, mc, re, text, .., end)
 }
 
-fn is_match_plus(
-    lazy: bool,
-    mc: MetaChar,
-    re: &[char],
-    text: &[char],
-    end: &mut usize,
-) -> bool {
+fn is_match_plus(lazy: bool, mc: MetaChar, re: &[char], text: &[char], end: &mut usize) -> bool {
     is_match_char(lazy, mc, re, text, 1.., end)
 }
 
-fn is_match_ques(
-    lazy: bool,
-    mc: MetaChar,
-    re: &[char],
-    text: &[char],
-    end: &mut usize,
-) -> bool {
+fn is_match_ques(lazy: bool, mc: MetaChar, re: &[char], text: &[char], end: &mut usize) -> bool {
     is_match_char(lazy, mc, re, text, ..2, end)
 }
 

@@ -1,7 +1,6 @@
 use alloc::vec::Vec;
 use core::convert::TryInto;
 
-// TODO: Move this to kernel after removing the `vga set palette` command
 pub struct Palette {
     pub colors: [(u8, u8, u8); 16],
 }
@@ -31,7 +30,6 @@ impl Palette {
     }
 }
 
-// TODO: Remove this
 pub fn from_csv(s: &str) -> Result<Palette, ()> {
     let colors: Vec<_> = s
         .split('\n')

@@ -74,23 +74,23 @@ impl fmt::Display for Style {
 
 fn color_to_fg(name: &str) -> Option<usize> {
     match name {
-        "Black"      => Some(30),
-        "Red"        => Some(31),
-        "Green"      => Some(32),
-        "Brown"      => Some(33),
-        "Blue"       => Some(34),
-        "Magenta"    => Some(35),
-        "Cyan"       => Some(36),
-        "LightGray"  => Some(37),
-        "DarkGray"   => Some(90),
-        "LightRed"   => Some(91),
+        "Black" => Some(30),
+        "Red" => Some(31),
+        "Green" => Some(32),
+        "Brown" => Some(33),
+        "Blue" => Some(34),
+        "Magenta" => Some(35),
+        "Cyan" => Some(36),
+        "LightGray" => Some(37),
+        "DarkGray" => Some(90),
+        "LightRed" => Some(91),
         "LightGreen" => Some(92),
-        "Yellow"     => Some(93),
-        "LightBlue"  => Some(94),
-        "Pink"       => Some(95),
-        "LightCyan"  => Some(96),
-        "White"      => Some(97),
-        _            => None,
+        "Yellow" => Some(93),
+        "LightBlue" => Some(94),
+        "Pink" => Some(95),
+        "LightCyan" => Some(96),
+        "White" => Some(97),
+        _ => None,
     }
 }
 
@@ -104,18 +104,23 @@ pub fn is_printable(c: char) -> bool {
         // asking the VGA driver if it's printable.
         ((c as u32) < 0xFF) && sys::vga::is_printable(c as u8)
     } else {
-        true // TODO
+        false
     }
 }
 
 // The size of the screen in VGA Text Mode is 80x25
-
 pub fn cols() -> usize {
     let n = 80; // chars
-    sys::process::env("COLS").unwrap_or(n.to_string()).parse().unwrap_or(n)
+    sys::process::env("COLS")
+        .unwrap_or(n.to_string())
+        .parse()
+        .unwrap_or(n)
 }
 
 pub fn rows() -> usize {
     let n = 25; // lines
-    sys::process::env("ROWS").unwrap_or(n.to_string()).parse().unwrap_or(n)
+    sys::process::env("ROWS")
+        .unwrap_or(n.to_string())
+        .parse()
+        .unwrap_or(n)
 }

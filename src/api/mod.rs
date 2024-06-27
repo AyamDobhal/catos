@@ -89,10 +89,9 @@ pub mod fs;
 pub mod io;
 pub mod process;
 pub mod prompt;
-pub mod rng;
 pub mod regex;
+pub mod rng;
 pub mod syscall;
 pub mod time;
 pub mod unit;
 pub mod vga;
-// TODO: add mod wildcard
